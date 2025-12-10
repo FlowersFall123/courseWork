@@ -1,6 +1,5 @@
-package controller;
+package auto;
 
-import constructor.DataType;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

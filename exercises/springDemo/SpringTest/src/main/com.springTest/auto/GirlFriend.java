@@ -1,4 +1,4 @@
-package entity;
+package auto;
 
 public interface GirlFriend {
     public String speak();

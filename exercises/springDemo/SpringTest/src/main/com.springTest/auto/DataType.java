@@ -1,4 +1,4 @@
-package constructor;
+package auto;
 
 import entity.User;
 import lombok.Data;
