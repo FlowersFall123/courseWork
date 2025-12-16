@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd ">
+
+    <bean id="service" class="service.impl.UserServiceImpl" />
+    <!--    <bean id="loggerBefore" class="aop.LoggerBefore"/>-->
+    <!--    <bean id="loggerAfterReturning" class="aop.LoggerAfterReturning"/>-->
+
+    <!--  当您的程序代码中调用 service.addNewUser(user) 时，实际发生的流程如下：
+          1.Spring 拦截：Spring 发现这个方法符合 pointcut 的规则。
+          2.执行前置通知：先运行 loggerBefore.before() 代码（比如打印 "准备添加用户..."）。
+          3.执行目标方法：运行 UserServiceImpl.addNewUser()（真正的业务逻辑，比如存数据库）。
+          4.执行后置通知：运行 loggerAfterReturning.afterReturning() 代码（比如打印 "用户添加成功！"）。
+    -->
+    <!--    <aop:config>-->
+    <!--        <aop:pointcut id="pointcut" expression="execution(public void save(entity.User))"/>-->
+    <!--        <aop:advisor advice-ref="loggerBefore" pointcut-ref="pointcut"/>-->
+    <!--        <aop:advisor advice-ref="loggerAfterReturning" pointcut-ref="pointcut"/>-->
+    <!--    </aop:config>-->
+    <context:component-scan base-package="aop" />
+    <aop:aspectj-autoproxy/>
+</beans>

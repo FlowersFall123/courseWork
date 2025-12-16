@@ -8,14 +8,22 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 
+/**
+ * 切面类XML配置:
+ * <context:component-scan base-package="aop" />
+ * <aop:aspectj-autoproxy/>
+ */
 @Aspect
 @Component
 public class AroundAop {
     @Pointcut("execution(* service.impl.*.*(..))")
     public void pointCut(){}
+    @Pointcut("execution(* service.impl.UserServiceImpl.*(..))")
+    public void pointCutOfUser(){}
 
-    @Around("pointCut()")
+    @Around("pointCutOfUser()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         String methodName =joinPoint.getSignature().getName();
         System.out.println("methodName = " + methodName);
@@ -34,6 +42,7 @@ public class AroundAop {
         System.out.println("===============目标方法执行完毕===============");
         System.out.println("result = " + result);
 
-        return null;
+        return result;
     }
+
 }

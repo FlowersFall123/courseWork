@@ -11,12 +11,7 @@ public class TestSpring {
     public static void main(String[] args) {
         applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserService userService = (UserService) applicationContext.getBean("service");
-        User user = User.builder()
-                .id(1)
-                .username("admin")
-                .password("<PASSWORD>")
-                .email("<EMAIL>")
-                .build();
+        User user = new User(1, "张三", "123456", "123456@qq.com");
         userService.save(user);
     }
 }
