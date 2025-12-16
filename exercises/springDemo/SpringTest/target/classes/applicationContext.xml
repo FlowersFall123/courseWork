@@ -1,121 +1,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
-<!--    <bean id="service" class="service.impl.UserServiceImpl" />-->
-<!--&lt;!&ndash;    <bean id="loggerBefore" class="aop.LoggerBefore"/>&ndash;&gt;-->
-<!--&lt;!&ndash;    <bean id="loggerAfterReturning" class="aop.LoggerAfterReturning"/>&ndash;&gt;-->
-
-<!--&lt;!&ndash;  当您的程序代码中调用 service.addNewUser(user) 时，实际发生的流程如下：-->
-<!--      1.Spring 拦截：Spring 发现这个方法符合 pointcut 的规则。-->
-<!--      2.执行前置通知：先运行 loggerBefore.before() 代码（比如打印 "准备添加用户..."）。-->
-<!--      3.执行目标方法：运行 UserServiceImpl.addNewUser()（真正的业务逻辑，比如存数据库）。-->
-<!--      4.执行后置通知：运行 loggerAfterReturning.afterReturning() 代码（比如打印 "用户添加成功！"）。-->
-<!--&ndash;&gt;-->
-<!--&lt;!&ndash;    <aop:config>&ndash;&gt;-->
-<!--&lt;!&ndash;        <aop:pointcut id="pointcut" expression="execution(public void save(entity.User))"/>&ndash;&gt;-->
-<!--&lt;!&ndash;        <aop:advisor advice-ref="loggerBefore" pointcut-ref="pointcut"/>&ndash;&gt;-->
-<!--&lt;!&ndash;        <aop:advisor advice-ref="loggerAfterReturning" pointcut-ref="pointcut"/>&ndash;&gt;-->
-<!--&lt;!&ndash;    </aop:config>&ndash;&gt;-->
-
-
-
-
-
-<!--&lt;!&ndash;  =============================IOC============================  &ndash;&gt;-->
-
-<!--&lt;!&ndash;  BoyConstruct.java  &ndash;&gt;-->
-<!--    <bean id="chinaGirlFriend" class="auto.ChinaGirlFriend">-->
-<!--        <property name="language" value="chinese" />-->
-<!--    </bean>-->
-<!--    <bean id="boyConstructor" class="auto.BoyConstructor">-->
-<!--        <constructor-arg ref="chinaGirlFriend" />-->
-<!--    </bean>-->
-
-<!--&lt;!&ndash;  BoyPNameSpace.java  &ndash;&gt;-->
-<!--&lt;!&ndash;    <bean id="usaGirlFriend" class="auto.UsaGirlFriend">&ndash;&gt;-->
-<!--&lt;!&ndash;        <property name="language" value="english" />&ndash;&gt;-->
-<!--&lt;!&ndash;    </bean>&ndash;&gt;-->
-<!--&lt;!&ndash;    <bean id="boyPNameSpace" class="auto.BoyPNameSpace">&ndash;&gt;-->
-<!--&lt;!&ndash;        <property name="girlFriend" ref="usaGirlFriend" />&ndash;&gt;-->
-<!--&lt;!&ndash;    </bean>&ndash;&gt;-->
-<!--&lt;!&ndash;  使用注解需要配 置注解扫描  &ndash;&gt;-->
-<!--    <context:component-scan base-package="auto" />-->
-<!--    <context:component-scan base-package="aop" />-->
-<!--    <aop:aspectj-autoproxy/>-->
-
-<!--&lt;!&ndash;  BoySetter.java  &ndash;&gt;-->
-<!--    <bean id="japanGirlFriend" class="auto.JapanGirlFriend">-->
-<!--        <property name="language" value="japanese" />-->
-<!--    </bean>-->
-<!--    <bean id="boySetter" class="auto.BoySetter">-->
-<!--        <property name="girlFriend" ref="japanGirlFriend" />-->
-<!--    </bean>-->
-
-<!--    <bean id="dataType" class="auto.DataType">-->
-<!--&lt;!&ndash;    使用<![CDATA[EP&G]]>标记处理XML特殊字符    &ndash;&gt;-->
-<!--        <property name="specialCharacter1">-->
-<!--            <value><![CDATA[EP&G]]></value>-->
-<!--        </property>-->
-<!--&lt;!&ndash;    把XML的特殊字符替换为实体引用    &ndash;&gt;-->
-<!--        <property name="specialCharacter2">-->
-<!--            <value>EP&amp;G</value>-->
-<!--        </property>-->
-<!--&lt;!&ndash;    定义内部Bean    &ndash;&gt;-->
-<!--        <property name="innerBean">-->
-<!--            <bean class="entity.User">-->
-<!--                <property name="username" value="student" />-->
-<!--            </bean>-->
-<!--        </property>-->
-<!--&lt;!&ndash;    注入List类型    &ndash;&gt;-->
-<!--        <property name="list">-->
-<!--            <list>-->
-<!--                <value>乒乓球</value>-->
-<!--                <value>羽毛球</value>-->
-<!--                <value>篮球</value>-->
-<!--                <value>足球</value>-->
-<!--            </list>-->
-<!--        </property>-->
-<!--&lt;!&ndash;    注入Properties类型    &ndash;&gt;-->
-<!--        <property name="properties">-->
-<!--            <props>-->
-<!--                <prop key="name">suanyun</prop>-->
-<!--                <prop key="age">18</prop>-->
-<!--            </props>-->
-<!--        </property>-->
-<!--&lt;!&ndash;    注入空字符串值    &ndash;&gt;-->
-<!--        <property name="emptyValue">-->
-<!--            <value/>-->
-<!--        </property>-->
-<!--&lt;!&ndash;    注入null值    &ndash;&gt;-->
-<!--        <property name="nullValue">-->
-<!--            <null />-->
-<!--        </property>-->
-<!--    </bean>-->
-<!--&lt;!&ndash;  =============================IOC============================  &ndash;&gt;-->
-
-
-<!--&lt;!&ndash;  ==========================SpringMvc=========================  &ndash;&gt;-->
-<!--    <context:component-scan base-package="service"/>-->
-<!--    <context:component-scan base-package="controller"/>-->
-<!--	<mvc:annotation-driven/>-->
-<!--    <mvc:resources mapping="/*.html" location="WEB-INF" />-->
-<!--&lt;!&ndash;  视图解析  &ndash;&gt;-->
-<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-<!--        <property name="prefix" value="/"/>-->
-<!--        <property name="suffix" value=".jsp"/>-->
-<!--    </bean>-->
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <import resource="classpath:applicationContext-aop.xml"/>
     <import resource="classpath:applicationContext-ioc.xml"/>
+
+<!--  非 Web 环境下启动 Spring 容器，却加载了 Spring MVC 配置，
+      导致 MVC Bean 在初始化时依赖 ServletContext，而普通 JVM 环境中不存在该对象，
+      从而抛出 NoClassDefFoundError。  -->
 <!--    <import resource="classpath:applicationContext-mvc.xml"/>-->
 
 </beans>
