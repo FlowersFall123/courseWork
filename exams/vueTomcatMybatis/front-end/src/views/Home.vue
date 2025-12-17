@@ -20,7 +20,7 @@ const form = reactive({
   desc: '',
 })
 const getAllPet=()=>{
-  axios.get('pet').then((res)=>{
+  axios.get('get').then((res)=>{
     tableData.value=res.data;
   })
 }

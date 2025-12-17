@@ -20,11 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 import java.util.stream.Collectors;
 
 //@WebServlet(urlPatterns = "/login",name = "LoginController")
 @Controller
-public class LoginController extends HttpServlet {
+public class LoginController{
 
     private static  final  String resource="mybatis-config.xml";
     private static SqlSession session=null;
@@ -91,4 +92,22 @@ public class LoginController extends HttpServlet {
             return "{\"code\": -1}";
         }
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/get",method = RequestMethod.GET)
+    public List<Pet> getAll(){
+        Reader reader= null;
+        try {
+            reader = Resources.getResourceAsReader(resource);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        SqlSessionFactory sessionFactory=new SqlSessionFactoryBuilder().build(reader);
+
+
+        session=sessionFactory.openSession(true);
+        PetMapper petMapper =session.getMapper(PetMapper.class);
+        return petMapper.getAllPet();
+    }
+
 }
