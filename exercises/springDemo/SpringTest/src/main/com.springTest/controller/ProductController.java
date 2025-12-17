@@ -35,20 +35,21 @@ public class ProductController {
         Product addProduct = productService.addProduct(product);
         log.info("addProduct = " + addProduct);
         redirectAttributes.addFlashAttribute("message","产品添加成功，ID："+addProduct.getId());
-        return "redirect:/viewProduct/"+addProduct.getId();
+        return "redirect:/viewProduct/"+addProduct.getId()+"?message=success";
     }
 
     @RequestMapping("/viewProduct/{id}")
     public String viewProduct(@PathVariable("id") Long id, Model model) {
         Product product = productService.getProduct(id);
         model.addAttribute("product",product);
+        System.out.println("model = " + model.getAttribute("product"));
         return "viewProduct";
     }
-//TODO 修改xml进行分类
-    @RequestMapping("retrieveProduct")
-    public String retrieveProduct(@RequestParam Long id, Model model) {
-        Product product = productService.getProduct(id);
-        model.addAttribute("products",product);
-        return "retrieveProduct";
-    }
+
+//    @RequestMapping("retrieveProduct")
+//    public String retrieveProduct(@RequestParam Long id, Model model) {
+//        Product product = productService.getProduct(id);
+//        model.addAttribute("products",product);
+//        return "retrieveProduct";
+//    }
 }
