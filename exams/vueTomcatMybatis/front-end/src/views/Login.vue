@@ -2,6 +2,7 @@
 import {ref} from "vue";
 import axios from "axios";
 import router from "@/router/index.js";
+import { ElMessage } from 'element-plus'
 import userStores from "@/stores/userStores.js";
 
 const loginForm=ref({
@@ -10,14 +11,16 @@ const loginForm=ref({
 });
 
 const login=()=>{
-  axios.post('login',{
-    username:loginForm.value.username,
+  const login={
+    petName:loginForm.value.username,
     password:loginForm.value.password
-  }).then((res)=>{
+  }
+  axios.post('login',login).then((res)=>{
     if (res.data.code!==-1){
-      userStores().setUser(res.data.data);
+      ElMessage.success('登陆成功！');
+      // userStores().setUser(res.data.data);
       router.push('/home');
-    }else Element.Message.error('用户名或密码错误');
+    }else ElMessage.error('用户名或密码错误');
   })
 }
 </script>
