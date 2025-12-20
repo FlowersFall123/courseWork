@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatisWork.dao.StudentDao">
+
+    <insert id="InsertStudent">
+        insert into student(name,sex,birthday,hobby)
+        values(#{name},#{sex},#{birthday},#{hobby})
+    </insert>
+
+    <delete id="DeleteStudent">
+        delete from student where id=#{id}
+    </delete>
+
+    <select id="getStudentAndHobby" resultType="com.mybatisWork.entity.StudentAndHobby">
+        select s.id,s.name,s.sex,s.birthday,h.hobbyName
+        from student s,hobby h
+        where s.hobby=h.id
+    </select>
+
+    <select id="getIdByHobbyName" resultType="java.lang.Long">
+        select id from hobby where hobbyName=#{hobbyName}
+    </select>
+
+</mapper>
