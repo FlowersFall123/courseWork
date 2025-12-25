@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springmvc.dao.CourseDao">
+
+
+    <delete id="DeleteCourse">
+        delete from course where id=#{id}
+    </delete>
+
+    <select id="getCourse" resultType="com.springmvc.entity.Course">
+        select * from course
+    </select>
+    <select id="queryCourse" resultType="com.springmvc.entity.Course">
+        select * from course
+        where id=#{id}
+        and courseName=#{courseName}
+        and room=#{room}
+        and number between #{minNumber} and #{maxNumber}
+    </select>
+
+    <insert id="InsertCourse">
+        insert into course(courseName,code,teacher,room,number) values(#{courseName},#{code},#{teacher},#{room},#{number})
+    </insert>
+</mapper>
