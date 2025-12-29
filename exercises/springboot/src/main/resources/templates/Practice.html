@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>示例</title>
+</head>
+<body>
+<span th:each="i : ${list}">
+  <br th:if="${i == '<br>'}" />
+  <span th:if="${i != '<br>'}" th:text="${i}"></span>
+</span>
+</body>
+</html>

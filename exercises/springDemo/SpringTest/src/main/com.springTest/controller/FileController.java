@@ -26,6 +26,7 @@ public class FileController {
      * @param request
      * @throws IOException
      */
+    ，
     @PostMapping("/upload")
     @ResponseBody
     public void uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
