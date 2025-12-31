@@ -13,21 +13,9 @@ const router = createRouter({
       component: () => import('@/components/Auth/LoginForm.vue')
     },
     {
-      path: '/AI',
-      name: '人工智障',
-      component: () => import('@/components/AI/AIChat.vue')
-    },
-    {
-      path: '/',
-      name: '导航',
-      component: () => import('../views/Navigator.vue'),
-      children:[
-        {
-          path:'/',
-          name:"首页",
-          component:()=>import('../views/Home.vue')
-        }
-      ]
+      path:'/',
+      name:"首页",
+      component:()=>import('../views/Home.vue')
     },
   ],
 })

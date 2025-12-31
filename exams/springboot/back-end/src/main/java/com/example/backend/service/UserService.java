@@ -7,14 +7,16 @@ package com.example.backend.service;
  */
 
 import com.example.backend.entity.dto.RegisterForm;
+import com.example.backend.entity.dto.SendMessage;
+import com.example.backend.entity.po.MyMessage;
 import com.example.backend.entity.po.User;
+import com.example.backend.entity.vo.MessageVO;
 
 import java.util.List;
 
 public interface UserService {
     /**
      * 登录验证
-     * @param account
      * @param password
      * @return
      */
@@ -38,4 +40,8 @@ public interface UserService {
      * @return
      */
     List<User> getAllUser();
+
+    Integer InsertMessage(SendMessage sendMessage);
+
+    List<MessageVO> getMessageByToUserId();
 }

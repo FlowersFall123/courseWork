@@ -2,15 +2,15 @@ package com.example.backend.service.Impl;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.digest.BCrypt;
-import com.example.backend.common.UserIdentity;
-import com.example.backend.common.UserStatus;
+import com.example.backend.common.BaseContext;
 import com.example.backend.entity.dto.RegisterForm;
+import com.example.backend.entity.dto.SendMessage;
+import com.example.backend.entity.po.MyMessage;
 import com.example.backend.entity.po.User;
+import com.example.backend.entity.vo.MessageVO;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.service.UserService;
-import com.example.backend.tool.VerifyCodeTool;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -48,9 +48,7 @@ public class UserServiceImpl implements UserService {
                 .password(hashed)
                 .avatar("2003346691566211072.jpg")
                 .email(registerForm.getEmail())
-                .identity(UserIdentity.DEFAULT)
                 .time(new Date())
-                .status(UserStatus.DEFAULT)
                 .build();
         Integer status=userMapper.register(newUser);
         if (status==1) return 1;
@@ -65,5 +63,29 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUser() {
         return userMapper.getAllUser();
+    }
+
+    @Override
+    public Integer InsertMessage(SendMessage sendMessage) {
+        if (sendMessage.getToUserId()==null)sendMessage.setToUserId(0L);
+        MyMessage message = MyMessage.builder()
+                .context(sendMessage.getContext())
+                .toUserId(sendMessage.getToUserId())
+                .fromUserId(BaseContext.getCurrentId())
+                .build();
+        Integer status=userMapper.InsertMessage(message);
+        if (status==1) return 1;
+        else return 0;
+    }
+
+    @Override
+    public List<MessageVO> getMessageByToUserId() {
+        List<MyMessage>myMessages= userMapper.getMessageByToUserId(BaseContext.getCurrentId());
+        return myMessages.stream().map(msg->{
+            return MessageVO.builder()
+                    .context(msg.getContext())
+                    .username(userMapper.getUserById(msg.getFromUserId()).getUsername())
+                    .build();
+        }).toList();
     }
 }

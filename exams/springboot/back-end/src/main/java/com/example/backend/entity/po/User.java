@@ -59,15 +59,6 @@ public class User {
     @ApiModelProperty(value = "邮箱")
     private String email;
 
-    /**
-     * 身份
-     * admin:管理员
-     * user:用户
-     * up:博主
-     * 默认值： user
-     */
-    @ApiModelProperty(value = "身份")
-    private String identity;
 
     /**
      * 注册时间
@@ -75,13 +66,4 @@ public class User {
     @ApiModelProperty(value = "注册时间")
     private Date time;
 
-    /**
-     * 状态
-     * 0:禁用
-     * 1:正常
-     * -1:注销
-     * 默认值： 1
-     */
-    @ApiModelProperty(value = "状态")
-    private Long status;
 }

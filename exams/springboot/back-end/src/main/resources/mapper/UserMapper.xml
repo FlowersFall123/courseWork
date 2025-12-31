@@ -4,7 +4,16 @@
 <mapper namespace="com.example.backend.mapper.UserMapper">
 
     <insert id="register">
-        insert into user(username,account,password,avatar,email,identity,time,status)
-        values(#{username},#{account},#{password},#{avatar},#{email},#{identity},#{time},#{status})
+        insert into user(username,account,password,avatar,email,time)
+        values(#{username},#{account},#{password},#{avatar},#{email},#{time})
     </insert>
+
+    <insert id="InsertMessage">
+        insert into message(fromUserId,toUserId, context)
+        values(#{fromUserId},#{toUserId},#{context})
+    </insert>
+
+    <select id="getMessageByToUserId" resultType="com.example.backend.entity.po.MyMessage">
+        select * from message where toUserId = #{toUserId} or toUserId = 0
+    </select>
 </mapper>

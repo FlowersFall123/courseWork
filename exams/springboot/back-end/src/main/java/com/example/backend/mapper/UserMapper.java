@@ -6,6 +6,7 @@ package com.example.backend.mapper;
  * @Description:
  */
 
+import com.example.backend.entity.po.MyMessage;
 import com.example.backend.entity.po.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -44,4 +45,13 @@ public interface UserMapper {
      */
     @Select("SELECT * FROM user WHERE id=#{id}")
     User getUserById(Long id);
+
+    /**
+     * 插入消息
+     * @param message
+     * @return
+     */
+    Integer InsertMessage(MyMessage message);
+
+    List<MyMessage> getMessageByToUserId(Long toUserId);
 }
