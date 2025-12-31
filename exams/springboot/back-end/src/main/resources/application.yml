@@ -1,0 +1,64 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://${proPath.db.host:localhost}:${proPath.db.port:3306}/${proPath.db.database:propath}
+    username: ${proPath.db.root:root}
+    password: ${proPath.db.password:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      url: redis://${proPath.redis.host:localhost}:${proPath.redis.port:6379}
+  ai:
+    openai:
+      api-key: ${proPath.ai.key}
+      base-url: ${proPath.ai.url}
+      chat:
+        options:
+          model: ${proPath.ai.model}
+      embedding:
+        options:
+          model: text-embedding-3-small
+    chat:
+      memory:
+        repository:
+          jdbc:
+            platform: ${proPath.jdbc.platform}
+            initialize-schema: always
+
+    vectorstore:
+      redis:
+        # 首次启动自动创建索引与 schema
+        initialize-schema: true
+        index-name: custom-index
+        prefix: AI-   #redis里面键的前缀
+
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: ${proPath.mail.qq}
+    password: ${proPath.mail.token}
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true # QQ邮箱必须开启SSL
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.backend.pojo
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+
+
+
