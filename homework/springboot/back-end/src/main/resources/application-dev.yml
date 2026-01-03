@@ -1,0 +1,9 @@
+myWork:
+  db:
+    host: localhost
+    port: 3306
+    root: root
+    password: 19805601056Bkj@@
+    database: mywork
+
+
